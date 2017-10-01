@@ -70,7 +70,7 @@ body{
 	width: 25%;
 }
 
-@media screen and (max-width: 985px) {
+@media screen and (max-width: 991px) {
 	.image-small{
 		height: 15%;
 		width: 15%;
