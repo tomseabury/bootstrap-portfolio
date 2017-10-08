@@ -38,6 +38,7 @@ if (letterArray.indexOf(letter) > -1) {
 	// this is the win condition, but it does not work if the
 	// word has a letter that appears more than once in it
 		$("h2").text("You did it!!")
+		$("h2").animate({opacity: "1"})
 		wins = wins + 1
 		winCheck = false
 	}
