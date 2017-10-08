@@ -23,10 +23,6 @@ body{
 	text-align: center;
 }
 
-.image-small {
-	height: 70px;
-	width: 30%;
-}
 
 .banner{
 	height: 20px;
@@ -68,6 +64,11 @@ body{
 .image-small{
 	height: 25%;
 	width: 25%;
+}
+
+.adjustPhoto{
+	height: 150px;
+	width: 250px;
 }
 
 @media screen and (max-width: 991px) {
