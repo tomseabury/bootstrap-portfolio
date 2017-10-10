@@ -33,3 +33,8 @@ h2{
 #correctLetters{
 	padding-left: 20%;
 }
+
+#guessedLetters{
+	font-size: 36px;
+	color: white;
+}
