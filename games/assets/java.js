@@ -13,10 +13,12 @@ var winCheck = true
 
 
 function generateWord(){
+	$("h2").animate({opacity: ".2"})
+	$(".btn").animate({opacity: ".2"})
 	randomWord = wordBank[Math.floor(Math.random()*174)];
 	letterArray= randomWord.toUpperCase().split("");
 	letterArray.forEach(function(g){
-		$("#correctLetters").append('<div class= "correctLetters ' + g + '" style= "float: left; padding-right: 10px;">__</div>');
+		$("#correctLetters").append('<div class="correctLetters ' + g+ '" id="' + g + '" style= "float: left; padding-right: 10px;">__</div>');
 	})
 }
 
@@ -28,17 +30,17 @@ if (guesses > 1 && winCheck === true) {
 var letter = String.fromCharCode(event.keyCode).toUpperCase();
 classCheck = ""
 //create a way to not run this code if the letter has already been guessed
-guessedLetters.push(letter)
+guessedLetters.push(letter);
 if (letterArray.indexOf(letter) > -1) {
 	$("."+letter).text(letter);
 
 	$(".correctLetters").each(function(){
 		classCheck = classCheck + $(this).text();
-		console.log(classCheck)
 	});
 	if (classCheck === randomWord.toUpperCase()) {
-		$("h2").text("You did it!!")
-		$("h2").animate({opacity: "1"})
+		$("h2").text("You did it!!");
+		$("h2").animate({opacity: "1"});
+		$(".btn").animate({opacity: "1"});
 		wins = wins + 1
 		winCheck = false
 	}
@@ -46,10 +48,20 @@ if (letterArray.indexOf(letter) > -1) {
 }else{
 	$("#guessedLetters").append(letter);
 	guesses = guesses - 1
-	$("h4").text("You can only miss " + guesses + " more!")
+	$("h4").text("You can only miss " + guesses + " more!");
 }
 }else if (guesses < 2){
-	$("h4").text("Oh no! Looks like you have ran out of guesses..")
+	$("h4").text("Oh no! Looks like you have ran out of guesses..");
+	$(".btn").animate({opacity: "1"});
+	$(".correctLetters").each(function(){
+		var that = $(this);
+		var thatLetter = $(this).text();
+		if (thatLetter === "__"); {
+			that.text(that.attr("id"));
+			that.css("color", "red");
+		}
+		classCheck = classCheck + $(this).text();
+	});
 	// The assignment says to automatically pick a new word and start
 	// over. I didn't like that as much, but here is the code to do it.
 	// $("#correctLetters").empty();
