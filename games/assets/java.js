@@ -9,6 +9,7 @@ var wins = 0
 var guesses = 10
 var correct = 0
 var winCheck = true
+var lossCheck = false
 
 
 
@@ -50,35 +51,28 @@ if (letterArray.indexOf(letter) > -1) {
 	guesses = guesses - 1
 	$("h4").text("You can only miss " + guesses + " more!");
 }
-}else if (guesses < 2){
+}else if (guesses < 2 && lossCheck === false){
 	$("h4").text("Oh no! Looks like you have ran out of guesses..");
 	$(".btn").animate({opacity: "1"});
+	console.log("This is the thing ", $(".correctLetters"))
 	$(".correctLetters").each(function(){
 		var that = $(this);
-		var thatLetter = $(this).text();
-		if (thatLetter === "__"); {
-			that.text(that.attr("id"));
-			that.css("color", "red");
-		}
-		classCheck = classCheck + $(this).text();
+		var thatLetter = $(this)[0].innerHTML;
+		if (thatLetter === "__") {
+            that.text(that.attr("id"));
+            that.css("color", "red");
+        }
+        else if (thatLetter !== "__") {
+            that.text(that.attr("id"));
+            that.css("color", "white");
+        }
 	});
-	// The assignment says to automatically pick a new word and start
-	// over. I didn't like that as much, but here is the code to do it.
-	// $("#correctLetters").empty();
-	// $("#guessedLetters").empty();
-	// $("h2").text("Words correctly guessed: " + wins);
-	// $("h4").text("You can only miss 10 letters!");
-	// correct = 0
-	// guesses = 10
-	// winCheck = true
-	// generateWord();
+	lossCheck = true
 }
 
 };
 
-// div.addEventListener("DOMNodeInserted", function () {
-//     correct = correct + 1
-// });
+
 
 
 $(".btn").hover(function(){
@@ -101,6 +95,7 @@ $(".btn").on("click",function(){
 	correct = 0
 	guesses = 10
 	winCheck = true
+	lossCheck = false
 	generateWord();
 });
 
