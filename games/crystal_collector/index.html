@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Crystal Collector</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Bootstrap link-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="jumbotron" style="text-align: center;">
+				<h2>Crystal Collector!</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p id="gameNumber" class="bg-warning" style="text-align: center; font-size: 72px;">
+					0
+				</p>
+			</div>
+			<div class="col-md-4 col-md-offset-1">
+				<p class="bg-primary" style="text-align: center;">
+					<b><u>Here's how the game works</u></b>
+					<br><br>
+					1. The yellow box is given a random number which will be the target number to reach.
+					<br><br>
+					2. The blue box will start at 0 and gradually increase each time you click one of the four crystals below
+					<br><br>
+					3. Each crystal will be assigned a random number that you will figure out as you click them and watch your score increase
+					<br><br>
+					4. You win the game by getting your number to equal what is shown in the yellow box. However, push your number to high, and you will lose!
+				</p>
+			</div>
+			<div class="col-md-3 col-md-offset-1">
+				<p id="userNumber" class="bg-info" style="text-align: center; font-size: 72px;">
+					0
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<p id="winLoss" class="bg-primary" style="text-align: center; font-size: 32px;">
+					Wins: 0
+					<br>
+					Losses: 0
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<a><img id="crystal1" class="crystal" style="width:100%; height:100%;" src="photos/crystal1.jpg"></a>
+			</div>
+			<div class="col-md-3">
+				<a><img id="crystal2" class="crystal" style="width:100%; height:100%;" src="photos/crystal2.jpg"></a>
+			</div>
+			<div class="col-md-3">
+				<a><img id="crystal3" class="crystal" style="width:100%; height:100%;" src="photos/crystal3.jpg"></a>
+			</div>
+			<div class="col-md-3">
+				<a><img id="crystal4" class="crystal" style="width:100%; height:100%;" src="photos/crystal4.jpg"></a>
+			</div>
+		</div>
+	</div>
+	
+
+	<script src="assets/java.js"></script>
+</body>
+</html>

@@ -14,14 +14,14 @@ var lossCheck = false
 
 
 function generateWord(){
-	$("h2").animate({opacity: ".2"})
-	$(".btn").animate({opacity: ".2"})
+	$("h2").animate({opacity: ".2"});
+	$(".btn").animate({opacity: ".2"});
 	randomWord = wordBank[Math.floor(Math.random()*174)];
 	letterArray= randomWord.toUpperCase().split("");
 	letterArray.forEach(function(g){
 		$("#correctLetters").append('<div class="correctLetters ' + g+ '" id="' + g + '" style= "float: left; padding-right: 10px;">__</div>');
-	})
-}
+	});
+};
 
 
 
