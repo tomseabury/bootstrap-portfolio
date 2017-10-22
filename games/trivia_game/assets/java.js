@@ -9,7 +9,7 @@ var correctAnswer = 0
 var triviaGame = [
 	{
 		question : "Who was the rookie of the year in 2003?",
-		answer : ["Yao Ming","Amar'e Stoudemier","Caron Butler","Manu Ginobili"],
+		answer : ["Yao Ming","Amar'e Stoudemire","Caron Butler","Manu Ginobili"],
 		correct : 2,
 	},
 	{
