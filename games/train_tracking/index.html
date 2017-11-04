@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Train Tracking</title>
+    
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+
+    <!-- Moment JS -->
+	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+	s
+    <!-- my linked sheets -->
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="JavaScript" href="assets/java.js">
+</head>
+<body>
+	<div class="container">
+		
+		<!-- jumbotron header -->
+		<div class="container">
+	  		<div class="jumbotron text-center">
+	  			<div class="row">
+			   		<h1 id="headline">Keeping track of Thomas</h1> 
+			    </div>
+			</div>
+		</div>
+		
+		<!-- employee info panel -->
+		<div class="container">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Train Schedule</h3>
+				</div>
+				<div class="panel-body">
+					<table id="train-table" class="table">
+				      <thead>
+				        <tr>
+				          <th>Train Name</th>
+				          <th>Destination</th>
+				          <th>Frequency (min)</th>
+				          <th>Next Arrival</th>
+				          <th>Minutes Away</th>
+				        </tr>
+				      </thead>
+				      <tbody id="trainData">
+
+				      </tbody>
+				    </table>
+
+				 	<div class="form-group panel-body">
+				        <button type="button" id="update" class="btn btn-info">
+				        	Update
+				        </button>
+    				</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- user input area -->
+		<div class="container">
+			<div class="panel panel-info row">
+				  <div class="panel-heading">
+					    <h4 class="panel-title text-left">Add Train</h4>
+				  </div>
+
+				 	<div class="form-group panel-body">
+					  <label for="train">Train Name</label>
+					  <input type="text" class="form-control" id="trainName">
+					</div>
+
+					<div class="form-group panel-body">
+						  <label for="destination">Destination</label>
+						  <input type="text" class="form-control" id="destination">
+					</div>
+
+					<div class="form-group panel-body">
+					  <label for="startTime">First Departure Time (HH:MM - military time)</label>
+					  <input type="text" class="form-control" id="startTime">
+					</div>
+
+					<div class="form-group panel-body">
+						  <label for="frequency">Frequency (min)</label>
+						  <input type="text" class="form-control" id="frequency">
+					</div>
+				
+					<div class="form-group panel-body">
+				        <button type="button" id="submit" class="btn btn-primary">
+				        	Submit
+				        </button>
+    				</div>
+    			</div>
+			</div>
+		</div>
+
+
+
+
+	</div>	
+
+
+
+	<!-- JavaScript -->
+	<script src="assets/java.js"></script>
+</body>
+</html>
