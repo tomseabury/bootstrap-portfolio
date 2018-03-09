@@ -52,6 +52,7 @@ body{
 	border-color: #4aaaa5;
 	border-top-style: solid;
 	color: lightgrey;
+	z-index: 1000;
 }
 
 .profile-image{
