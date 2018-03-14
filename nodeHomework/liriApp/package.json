@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sorenious/liri-node-app.git"
+    "url": "git+https://github.com/tomseabury/bootstrap-portfolio.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Sorenious/liri-node-app/issues"
+    "url": "https://github.com/tomseabury/bootstrap-portfolio/issues"
   },
-  "homepage": "https://github.com/Sorenious/liri-node-app#readme",
+  "homepage": "https://github.com/tomseabury/bootstrap-portfolio#readme",
   "dependencies": {
     "node-spotify-api": "^1.0.7",
     "request": "^2.83.0",

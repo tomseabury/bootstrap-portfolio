@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sorenious/bamazon.git"
+    "url": "git+https://github.com/tomseabury/bootstrap-portfolio.git"
   },
   "author": "Me",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Sorenious/bamazon/issues"
+    "url": "https://github.com/tomseabury/bootstrap-portfolio/issues"
   },
-  "homepage": "https://github.com/Sorenious/bamazon#readme",
+  "homepage": "https://github.com/tomseabury/bootstrap-portfolio#readme",
   "dependencies": {
     "inquirer": "^4.0.1",
     "mysql": "^2.15.0"
