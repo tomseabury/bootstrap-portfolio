@@ -1,5 +1,10 @@
 tr:nth-child(even) {
     background-color:rgba(255, 255, 255, 0.5);
+    text-shadow:
+		-1px -1px 0 rgb(255, 255, 255),
+		1px -1px 0 rgb(255, 255, 255),
+		-1px 1px 0 rgb(255, 255, 255),
+		1px 1px 0 rgb(255, 255, 255);
 }
 
 tr:nth-child(odd) {
@@ -70,28 +75,6 @@ html {
 .carousel-fade .carousel-control {
     z-index: 2;
 }
-@media all and (transform-3d),
-(-webkit-transform-3d) {
-    .carousel-fade .carousel-inner > .item.next,
-    .carousel-fade .carousel-inner > .item.active.right {
-        opacity: 0;
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-    .carousel-fade .carousel-inner > .item.prev,
-    .carousel-fade .carousel-inner > .item.active.left {
-        opacity: 0;
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-    .carousel-fade .carousel-inner > .item.next.left,
-    .carousel-fade .carousel-inner > .item.prev.right,
-    .carousel-fade .carousel-inner > .item.active {
-        opacity: 1;
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-}
 .item:nth-child(1) {
     background: url(https://media.deseretdigital.com/file/aa89988589?type=jpeg&quality=55&c=15&a=4379240d) no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -108,6 +91,13 @@ html {
 }
 .item:nth-child(3) {
     background: url(http://foundtheworld.com/wp-content/uploads/2015/12/Yellowstone-National-Park-11.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.item:nth-child(4) {
+    background: url(https://www.nationalgeographic.com/content/dam/travel/2017-digital/utah/zion-national-park/watchman-zion-national-park.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
