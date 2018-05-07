@@ -8,7 +8,8 @@ $(document).ready(function() {
             MPG: 15,
             tankSize: 25,
         }}
-    ]
+    ];
+    
     var infoArr = [
         {details:{
             name: "Yellowstone",
