@@ -1,69 +1,69 @@
-$(function() {
+$(document).ready(function() {
     var map;
     var apiKey = "AIzaSyBCi9PmtjcyYxcfwV5YXjYyeq56knIlsEE";
 
+    var homeBase = [
+        {details:{
+            address: "9706 S 1210 E Sandy, UT 84094",
+            MPG: 15,
+            tankSize: 25,
+        }}
+    ]
     var infoArr = [
-        {details: 
-            {name: "Yellowstone",
+        {details:{
+            name: "Yellowstone",
             address: "Yellowstone National Park, WY 82190",
-            addressDetail:{
-                street:"S Entrance Rd",
-                cityState: "Yellowstone National Park, WY",
-                postal: "82190"              
+            travleInfo:{
+                milesFromHome: 335,
+                timeToDestination: "4 h 59 min",
             }}
         },
-        {details: 
-            {name: "Strawberry Reservoir",
+        {details:{
+            name: "Strawberry Reservoir",
             address: "Forest Rd 629, Heber City, UT 84032",
-            addressDetail:{
-                street:"Forest Rd 629",
-                cityState: "Heber City, UT",
-                postal: "84032"              
+            travleInfo:{
+                milesFromHome: 82,
+                timeToDestination: "1 h 39 min",
             }}
         },
-        {details: 
-            {name: "Bear Lake",
+        {details:{
+            name: "Bear Lake",
             address: "Rendezvous Beach Rd, Laketown, UT 84038",
-            addressDetail:{
-                street:"Rendezvous Beach Rd",
-                cityState: "Laketown, UT",
-                postal: "84038"              
+            travleInfo:{
+                milesFromHome: 142,
+                timeToDestination: "2 h 23 min",
             }}
         },
-        {details: 
-            {name: "Zion National Park",
+        {details:{
+            name: "Zion National Park",
             address: "171-163 Zion – Mount Carmel Hwy, Springdale, UT 84767",
-            addressDetail:{
-                street:"171-163 Zion – Mount Carmel Hwy",
-                cityState: "Springdale, UT",
-                postal: "84767"              
+            travleInfo:{
+                milesFromHome: 297,
+                timeToDestination: "4 h 23 min",
             }}
         },
-        {details: 
-            {name: "Arches",
+        {details:{
+            name: "Arches",
             address: "Arches Scenic Dr, Moab, UT 84532",
-            addressDetail:{
-                street:"Arches Scenic Dr",
-                cityState: "Moab, UT",
-                postal: "84532"              
+            travleInfo:{
+                milesFromHome: 218,
+                timeToDestination: "3 h 27 min",
             }}
         },
-        {details: 
-            {name: "Grand Canyon",
+        {details:{
+            name: "Grand Canyon",
             address: "Unnamed Road, North Rim, AZ 86052",
-            addressDetail:{
-                street:"Bridle Path",
-                cityState: "North Rim, AZ",
-                postal: "86052"              
+            travleInfo:{
+                milesFromHome: 512,
+                timeToDestination: "8 h 10 min",
             }}
         },
-        {details: 
-            {name: "Lake Powell",
+        {details:{
+            name: "Lake Powell",
             address: "100 Wahweap Blvd, Page, AZ 86040",
-            addressDetail:{
-                street:"100 Wahweap Blvd",
-                cityState: "Page, AZ",
-                postal: "86040"              
+            travleInfo:{
+                milesFromHome: 412,
+                timeToDestination: "9 h 31 min",
             }}
         }
     ];
@@ -76,9 +76,14 @@ $(function() {
         infoArr.forEach(element => {
             rowNumber = i;
             var travleTime = 0;
-            var miles = 0;
-            $('#infrogTable tr:last').after('<tr id="rowNumber'+rowNumber+'"></tr>')
-            $('#rowNumber'+rowNumber).append('<td>'+element.details.name+'</td><td><span class="fake-link">'+element.details.address+'</span></td><td>'+miles+'</td><td>'+travleTime+'</td>')
+            var gallons = Math.ceil(element.details.travleInfo.milesFromHome/homeBase[0].details.MPG);
+            $('#infrogTable tr:last').after('<tr id="rowNumber'+rowNumber+'"></tr>');
+            $('#rowNumber'+rowNumber).append(
+                '<td>'+element.details.name+'</td>'
+                +'<td><span class="fake-link">'+element.details.address+'</span></td>'
+                +'<td>'+element.details.travleInfo.milesFromHome+'</td>'
+                +'<td>'+element.details.travleInfo.timeToDestination+'</td>'
+                +'<td>'+gallons+' gal.</td>');
             i++
         });
     };
@@ -94,8 +99,8 @@ $(function() {
         setPins(map);
     };
 
-    function setPins(map) {        
-        var newPin = new google.maps.Geocoder       
+    function setPins(map) {
+        var newPin = new google.maps.Geocoder
         infoArr.forEach(element => {
             newPin.geocode({
                 address: element.details.address,
@@ -122,8 +127,8 @@ $(function() {
                   } else {
                     alert('Geocode was not successful for the following reason: ' + status);
                 };
-            });           
-        });  
+            });
+        });
     };
 
     createTable();
@@ -145,7 +150,7 @@ $(function() {
             });
         };
     });
-    
+
     $("h1").on('click', function(){
         map.setCenter({
             lat: 39.7102,
@@ -153,10 +158,9 @@ $(function() {
         }),
         map.setZoom(5);
     });
-    
-    $('.carousel').carousel();
-    
-    // this is having a CORS issue, will need to set up some sort of server side request
+
+ 
+    // this is having a CORS issue, will need to set up some sort of server side request if I want to proceed
     // $.ajax({
     //     method: 'GET',
     //     url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=40.6655101,-73.89188969999998&destinations=39.7102,-111.8363&key=" + apiKey,
@@ -165,5 +169,5 @@ $(function() {
     // .done(function(result){
     //     console.log(result);
     // });
-        
+
 });
