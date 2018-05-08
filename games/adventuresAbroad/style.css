@@ -48,10 +48,18 @@ th {
 		-1px 1px 0 rgb(255, 255, 255),
 		1px 1px 0 rgb(255, 255, 255);
 }
+body {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 
-/* Carousel css: https://codepen.io/chopfitzroy/pen/JoKMgG */
 
-html {
+/* Carousel css: https://codepen.io/chopfitzroy/pen/JoKMgG
+not totally sure what all of this is doing, but it does work */
+
+/* html {
     position: relative;
     min-height: 100%;
 }
@@ -117,4 +125,4 @@ html {
   padding: 10px;
   text-shadow: 2px 2px #000;
   color: #FFF;
-}
+} */
