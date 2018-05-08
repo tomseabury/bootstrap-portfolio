@@ -1,7 +1,13 @@
-$(document).ready(function() {
+$(()=> {
     var map;
     var apiKey = "AIzaSyBCi9PmtjcyYxcfwV5YXjYyeq56knIlsEE";
-
+    
+    var mainBackgroundImages=[
+        "https://www.flyingandtravel.com/wp-content/uploads/2017/02/new-zealand-milford-sound-mitre-peak-jetty.jpg",
+        "https://i.redditmedia.com/CrnL3LEufx0oRuuaJu3fAUaNSmx5rrG_TmroFUgqzfc.jpg?s=5b59c51626f609d194b7dde4fb1b8ca3",
+        "https://i.redditmedia.com/qYfOm5pz0pIgTx61F6iVpxQqfkq9Y5AADuXrFV6BVBM.jpg?s=654157778a27ea3503d73dee3cc6be94",
+        "https://i.redditmedia.com/0oaZn78nmvLfPfIUMYQMsafo3cGpdZh1Kia079-5JTg.jpg?s=5d821d5af839e1fc84ddda9de84b3e0b"];
+    
     var homeBase = [
         {details:{
             address: "9706 S 1210 E Sandy, UT 84094",
@@ -9,7 +15,7 @@ $(document).ready(function() {
             tankSize: 25,
         }}
     ];
-    
+
     var infoArr = [
         {details:{
             name: "Yellowstone",
@@ -17,7 +23,8 @@ $(document).ready(function() {
             travleInfo:{
                 milesFromHome: 335,
                 timeToDestination: "4 h 59 min",
-            }}
+            },
+            image: "http://foundtheworld.com/wp-content/uploads/2015/12/Yellowstone-National-Park-11.jpg"}
         },
         {details:{
             name: "Strawberry Reservoir",
@@ -25,7 +32,8 @@ $(document).ready(function() {
             travleInfo:{
                 milesFromHome: 82,
                 timeToDestination: "1 h 39 min",
-            }}
+            },
+            image: "https://media.deseretdigital.com/file/9a84db1767?crop=top:0|left:0|width:1260|height:670|gravity:Center&quality=55&interlace=none&resize=width:1260&order=resize,crop&c=14&a=e0f131f0"}
         },
         {details:{
             name: "Bear Lake",
@@ -33,7 +41,8 @@ $(document).ready(function() {
             travleInfo:{
                 milesFromHome: 142,
                 timeToDestination: "2 h 23 min",
-            }}
+            },
+            image: "https://wallpprs.media/preview/bear-lake-in-us_wallpprs.com_.jpg"}
         },
         {details:{
             name: "Zion National Park",
@@ -41,7 +50,8 @@ $(document).ready(function() {
             travleInfo:{
                 milesFromHome: 297,
                 timeToDestination: "4 h 23 min",
-            }}
+            },
+            image: "http://www.somethingsbrewing.com/wp-content/uploads/2011/09/Zion_HDR-3.jpg"}
         },
         {details:{
             name: "Arches",
@@ -49,7 +59,8 @@ $(document).ready(function() {
             travleInfo:{
                 milesFromHome: 218,
                 timeToDestination: "3 h 27 min",
-            }}
+            },
+            image: "http://hdqwalls.com/wallpapers/arches-national-park-gm.jpg"}
         },
         {details:{
             name: "Grand Canyon",
@@ -57,7 +68,8 @@ $(document).ready(function() {
             travleInfo:{
                 milesFromHome: 512,
                 timeToDestination: "8 h 10 min",
-            }}
+            },
+            image: "https://media.deseretdigital.com/file/aa89988589?type=jpeg&quality=55&c=15&a=4379240d"}
         },
         {details:{
             name: "Lake Powell",
@@ -65,7 +77,8 @@ $(document).ready(function() {
             travleInfo:{
                 milesFromHome: 412,
                 timeToDestination: "9 h 31 min",
-            }}
+            },
+            image: "http://www.travelswithtracy.net/wp-content/uploads/2014/05/Alstrom-Point-7.jpg"}
         }
     ];
 
@@ -82,7 +95,7 @@ $(document).ready(function() {
             $('#rowNumber'+rowNumber).append(
                 '<td>'+element.details.name+'</td>'
                 +'<td><span class="fake-link">'+element.details.address+'</span></td>'
-                +'<td>'+element.details.travleInfo.milesFromHome+'</td>'
+                +'<td>'+element.details.travleInfo.milesFromHome+' miles</td>'
                 +'<td>'+element.details.travleInfo.timeToDestination+'</td>'
                 +'<td>'+gallons+' gal.</td>');
             i++
@@ -91,7 +104,7 @@ $(document).ready(function() {
 
     function myMap() {
         var mapProp= {
-            center: new google.maps.LatLng(39.7102,-111.8363),
+            center: new google.maps.LatLng(41.7102,-111.8363),
             zoom:5,
             mapTypeId: google.maps.MapTypeId.HYBRID,
             mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
@@ -118,22 +131,28 @@ $(document).ready(function() {
                     google.maps.event.addListener(marker,'click',function() {
                         map.setZoom(12);
                         map.setCenter(marker.getPosition());
-                      });
+                        document.body.style.backgroundImage = "url("+element.details.image+")";
+                    });
                     google.maps.event.addListener(marker,'mouseover',function(){
                         infoMarker.open(map, marker);
                     });
                     google.maps.event.addListener(marker,'mouseout',function(){
                         infoMarker.close();
                     });
-                  } else {
+                } else {
                     alert('Geocode was not successful for the following reason: ' + status);
                 };
             });
         });
     };
 
+    function setBackGround(){
+        document.body.style.backgroundImage = "url("+mainBackgroundImages[Math.floor(Math.random()*mainBackgroundImages.length)]+")"
+    };
+
     createTable();
     myMap();
+    setBackGround();
     
     $("tr").on('click', function (){
         if(this.id != ""){
@@ -145,6 +164,7 @@ $(document).ready(function() {
                 if (status == google.maps.GeocoderStatus.OK) {
                     map.setCenter(results[0].geometry.location);
                     map.setZoom(10);
+                    document.body.style.backgroundImage = "url("+infoArr[rowID].details.image+")"
                   } else {
                     alert('Geocode was not successful for the following reason: ' + status);
                   };
@@ -154,13 +174,13 @@ $(document).ready(function() {
 
     $("h1").on('click', function(){
         map.setCenter({
-            lat: 39.7102,
+            lat: 41.7102,
             lng: -111.8363
         }),
         map.setZoom(5);
+        document.body.style.backgroundImage = "url("+mainBackgroundImages[Math.floor(Math.random()*mainBackgroundImages.length)]+")"
     });
 
- 
     // this is having a CORS issue, will need to set up some sort of server side request if I want to proceed
     // $.ajax({
     //     method: 'GET',
