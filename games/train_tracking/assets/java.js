@@ -34,7 +34,7 @@ function displayEmployee(snapshot){
         .children()
         .eq(1)
         .children("tr")
-        .eq(count) //this is the number that needs to change to reference lowes rows
+        .eq(count) //this is the number that needs to change to reference lower rows
         .children("td");
 
       // Setting the inner text of each td in the first row
