@@ -110,7 +110,7 @@ $(()=> {
                 '<td>'+element.details.name+'</td>'
                 +'<td><span class="fake-link">'+element.details.address+'</span></td>'
                 +'<td>'+element.details.travleInfo.milesFromHome+' miles</td>'
-                +'<td><a href="http://google.com/search?q=directions to '+element.details.name+ ' from here" target="blank">'+element.details.travleInfo.timeToDestination+'</a></td>'
+                +'<td><a href="http://google.com/search?q=directions to '+element.details.name+ ' from here" target="googleDirections">'+element.details.travleInfo.timeToDestination+'</a></td>'
                 +'<td>'+gallons+' gal.</td>');
             i++
         });
