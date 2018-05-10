@@ -1,7 +1,25 @@
 $(()=> {
-    var map;
-    var apiKey = "AIzaSyBCi9PmtjcyYxcfwV5YXjYyeq56knIlsEE";
+
+    var config = {
+        apiKey: "AIzaSyBvsyuXzArEHigJbCtTmTO4_v2cpRTWQRk",
+        authDomain: "thomasfurtrader.firebaseapp.com",
+        databaseURL: "https://thomasfurtrader.firebaseio.com",
+        projectId: "thomasfurtrader",
+        storageBucket: "thomasfurtrader.appspot.com",
+        messagingSenderId: "528829859070"
+      };
+    firebase.initializeApp(config);
     
+    var database = firebase.database();
+
+    var i = 0;
+    var map;
+
+    database.ref("/locations").on("child_added", function(snapShot){
+        tableBuild(snapShot);
+        console.log(database.ref("/locations/strawberry"));
+    });
+
     var mainBackgroundImages=[
         "https://www.flyingandtravel.com/wp-content/uploads/2017/02/new-zealand-milford-sound-mitre-peak-jetty.jpg",
         "https://i.redditmedia.com/CrnL3LEufx0oRuuaJu3fAUaNSmx5rrG_TmroFUgqzfc.jpg?s=5b59c51626f609d194b7dde4fb1b8ca3",
@@ -84,19 +102,15 @@ $(()=> {
 
 
     function createTable(){
-        var i = 0;
         var age;
-        var rowNumber;
         infoArr.forEach(element => {
-            rowNumber = i;
-            var travleTime = 0;
             var gallons = Math.ceil(element.details.travleInfo.milesFromHome/homeBase[0].details.MPG);
-            $('#infrogTable tr:last').after('<tr id="rowNumber'+rowNumber+'"></tr>');
-            $('#rowNumber'+rowNumber).append(
+            $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'"></tr>');
+            $('#rowNumber'+i).append(
                 '<td>'+element.details.name+'</td>'
                 +'<td><span class="fake-link">'+element.details.address+'</span></td>'
                 +'<td>'+element.details.travleInfo.milesFromHome+' miles</td>'
-                +'<td>'+element.details.travleInfo.timeToDestination+'</td>'
+                +'<td><a href="http://google.com/search?q=directions to '+element.details.name+ ' from here" target="blank">'+element.details.travleInfo.timeToDestination+'</a></td>'
                 +'<td>'+gallons+' gal.</td>');
             i++
         });
