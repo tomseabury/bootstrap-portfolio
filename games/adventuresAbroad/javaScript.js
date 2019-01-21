@@ -28,9 +28,9 @@ $(()=> {
     
     var homeBase = [
         {details:{
-            address: "9706 S 1210 E Sandy, UT 84094",
-            MPG: 15,
-            tankSize: 25,
+            address: "1541 E Eaglemann Ct. West Jordan, UT 84084",
+            MPG: 30,
+            tankSize: 17,
         }}
     ];
 
@@ -60,7 +60,7 @@ $(()=> {
                 milesFromHome: 142,
                 timeToDestination: "2 h 23 min",
             },
-            image: "https://wallpprs.media/preview/bear-lake-in-us_wallpprs.com_.jpg"}
+            image: "https://i2.wp.com/www.spendlifetraveling.com/wp-content/uploads/2016/10/big_bear_lake_travel_tips.jpg?fit=1600%2C850&ssl=1"}
         },
         {details:{
             name: "Zion National Park",
@@ -97,6 +97,24 @@ $(()=> {
                 timeToDestination: "9 h 31 min",
             },
             image: "http://www.travelswithtracy.net/wp-content/uploads/2014/05/Alstrom-Point-7.jpg"}
+        },
+        {details:{
+            name: "Goblin Valley",
+            address: "Goblin Valley Rd, Green River, UT 84525",
+            travleInfo:{
+                milesFromHome: 202,
+                timeToDestination: "3 h 27 min",
+            },
+            image: "https://www.stgeorgeutah.com/wp-content/uploads/2018/04/Goblin-Valley-landscape.jpg"}
+        },
+        {details:{
+            name: "Havasupai",
+            address: "Havasupai, Supai, AZ 86435",
+            travleInfo:{
+                milesFromHome: 633,
+                timeToDestination: "9 h 45 min",
+            },
+            image: "https://www.coloradoavidgolfer.com/wp-content/uploads/2017/03/Havasupai-Falls.jpg"}
         }
     ];
 
@@ -194,5 +212,15 @@ $(()=> {
         map.setZoom(5);
         document.body.style.backgroundImage = "url("+mainBackgroundImages[Math.floor(Math.random()*mainBackgroundImages.length)]+")"
     });
+
+    // this is having a CORS issue, will need to set up some sort of server side request if I want to proceed
+    // $.ajax({
+    //     method: 'GET',
+    //     url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=40.6655101,-73.89188969999998&destinations=39.7102,-111.8363&key=" + apiKey,
+    //     dataType: 'json',
+    // })
+    // .done(function(result){
+    //     console.log(result);
+    // });
 
 });
