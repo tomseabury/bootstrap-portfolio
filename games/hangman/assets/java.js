@@ -50,6 +50,24 @@ if (letterArray.indexOf(letter) > -1) {
 	$("#guessedLetters").append(letter);
 	guesses = guesses - 1
 	$("h4").text("You can only miss " + guesses + " more!");
+	if (guesses < 1 && lossCheck === false){
+		$("h4").text("Oh no! Looks like you have ran out of guesses..");
+		$(".btn").animate({opacity: "1"});
+		console.log("This is the thing ", $(".correctLetters"))
+		$(".correctLetters").each(function(){
+			var that = $(this);
+			var thatLetter = $(this)[0].innerHTML;
+			if (thatLetter === "__") {
+				that.text(that.attr("id"));
+				that.css("color", "red");
+			}
+			else if (thatLetter !== "__") {
+				that.text(that.attr("id"));
+				that.css("color", "white");
+			}
+		});
+		lossCheck = true
+	}
 }
 }else if (guesses < 1 && lossCheck === false){
 	$("h4").text("Oh no! Looks like you have ran out of guesses..");
