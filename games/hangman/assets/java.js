@@ -27,7 +27,7 @@ function generateWord(){
 
 
 document.onkeyup = function(event) {
-if (guesses > 1 && winCheck === true) {
+if (guesses > 0 && winCheck === true) {
 var letter = String.fromCharCode(event.keyCode).toUpperCase();
 classCheck = ""
 //create a way to not run this code if the letter has already been guessed
@@ -51,7 +51,7 @@ if (letterArray.indexOf(letter) > -1) {
 	guesses = guesses - 1
 	$("h4").text("You can only miss " + guesses + " more!");
 }
-}else if (guesses < 2 && lossCheck === false){
+}else if (guesses < 1 && lossCheck === false){
 	$("h4").text("Oh no! Looks like you have ran out of guesses..");
 	$(".btn").animate({opacity: "1"});
 	console.log("This is the thing ", $(".correctLetters"))
