@@ -195,14 +195,4 @@ $(()=> {
         document.body.style.backgroundImage = "url("+mainBackgroundImages[Math.floor(Math.random()*mainBackgroundImages.length)]+")"
     });
 
-    // this is having a CORS issue, will need to set up some sort of server side request if I want to proceed
-    // $.ajax({
-    //     method: 'GET',
-    //     url: "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=40.6655101,-73.89188969999998&destinations=39.7102,-111.8363&key=" + apiKey,
-    //     dataType: 'json',
-    // })
-    // .done(function(result){
-    //     console.log(result);
-    // });
-
 });
