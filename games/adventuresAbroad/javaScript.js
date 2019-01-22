@@ -9,6 +9,8 @@ $(()=> {
         messagingSenderId: "528829859070"
       };
     firebase.initializeApp(config);
+
+    
     
     var database = firebase.database();
 
@@ -16,8 +18,11 @@ $(()=> {
     var map;
 
     database.ref("/locations").on("child_added", function(snapShot){
-        tableBuild(snapShot);
-        console.log(database.ref("/locations/strawberry"));
+        
+        console.log("Hellow world");
+        console.log(snapShot.val());
+        createTable(snapShot);
+
     });
 
     var mainBackgroundImages=[
@@ -119,19 +124,33 @@ $(()=> {
     ];
 
 
-    function createTable(){
-        var age;
-        infoArr.forEach(element => {
-            var gallons = Math.ceil(element.details.travleInfo.milesFromHome/homeBase[0].details.MPG);
+    // function createTable(){
+    //     var age;
+    //     infoArr.forEach(element => {
+    //         var gallons = Math.ceil(element.details.travleInfo.milesFromHome/homeBase[0].details.MPG);
+    //         $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'"></tr>');
+    //         $('#rowNumber'+i).append(
+    //             '<td>'+element.details.name+'</td>'
+    //             +'<td><span class="fake-link">'+element.details.address+'</span></td>'
+    //             +'<td>'+element.details.travleInfo.milesFromHome+' miles</td>'
+    //             +'<td><a href="http://google.com/search?q=directions to '+element.details.name+ ' from here" target="googleDirections">'+element.details.travleInfo.timeToDestination+'</a></td>'
+    //             +'<td>'+gallons+' gal.</td>');
+    //         i++
+    //     });
+    // };
+
+    //this is working to create the table. Now need to map the snapShot to the other functions, and get the table click function working again.
+
+    function createTable(snapShot){
+            var gallons = Math.ceil(snapShot.val().milesFromHome/homeBase[0].details.MPG);
             $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'"></tr>');
             $('#rowNumber'+i).append(
-                '<td>'+element.details.name+'</td>'
-                +'<td><span class="fake-link">'+element.details.address+'</span></td>'
-                +'<td>'+element.details.travleInfo.milesFromHome+' miles</td>'
-                +'<td><a href="http://google.com/search?q=directions to '+element.details.name+ ' from here" target="googleDirections">'+element.details.travleInfo.timeToDestination+'</a></td>'
+                '<td>'+snapShot.val().name+'</td>'
+                +'<td><span class="fake-link">'+snapShot.val().address+'</span></td>'
+                +'<td>'+snapShot.val().milesFromHome+' miles</td>'
+                +'<td><a href="http://google.com/search?q=directions to '+snapShot.val().name+ ' from here" target="googleDirections">'+snapShot.val().timeToDestination+'</a></td>'
                 +'<td>'+gallons+' gal.</td>');
             i++
-        });
     };
 
     function myMap() {
@@ -182,7 +201,6 @@ $(()=> {
         document.body.style.backgroundImage = "url("+mainBackgroundImages[Math.floor(Math.random()*mainBackgroundImages.length)]+")"
     };
 
-    createTable();
     myMap();
     setBackGround();
     
