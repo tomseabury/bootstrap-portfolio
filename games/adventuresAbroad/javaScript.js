@@ -124,7 +124,7 @@ $(()=> {
     ];
 
 
-    function createTable(){
+    function createTableNoDataBase(){
         var age;
         infoArr.forEach(element => {
             var gallons = Math.ceil(element.details.travleInfo.milesFromHome/homeBase[0].details.MPG);
@@ -203,6 +203,7 @@ $(()=> {
 
     myMap();
     setBackGround();
+    createTableNoDataBase();
     
     $("tr").on('click', function (){
         if(this.id != ""){
