@@ -25,7 +25,7 @@ $(()=> {
         $("tr").on('click', function (){
             if(this.id != ""){
                 var geocoder = new google.maps.Geocoder
-                var address = this.id;
+                var address = this.address;
                 var image = this.img;
                 geocoder.geocode({
                     address: address,
@@ -160,7 +160,7 @@ $(()=> {
 
     function createTable(snapShot){
             var gallons = Math.ceil(snapShot.val().milesFromHome/homeBase[0].details.MPG);
-            $('#infrogTable tr:last').after('<tr id="'+snapShot.val().address+'" img="'+snapShot.val().image+'"></tr>');
+            $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'" address="'+snapShot.val().address+'" img="'+snapShot.val().image+'"></tr>');
             $('#rowNumber'+i).append(
                 '<td>'+snapShot.val().name+'</td>'
                 +'<td><span class="fake-link">'+snapShot.val().address+'</span></td>'
