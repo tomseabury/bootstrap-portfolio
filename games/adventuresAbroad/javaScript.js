@@ -22,7 +22,23 @@ $(()=> {
         console.log("Hellow world");
         console.log(snapShot.val());
         createTable(snapShot);
-
+        $("tr").on('click', function (){
+            if(this.id != ""){
+                var geocoder = new google.maps.Geocoder
+                var rowID = this.id.substr(this.id.length - 1);
+                geocoder.geocode({
+                    address: infoArr[rowID].details.address,
+                }, function(results,status){
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        map.setCenter(results[0].geometry.location);
+                        map.setZoom(10);
+                        document.body.style.backgroundImage = "url("+infoArr[rowID].details.image+")"
+                      } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                      };
+                });
+            };
+        });
     });
 
     var mainBackgroundImages=[
