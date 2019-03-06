@@ -124,20 +124,20 @@ $(()=> {
     ];
 
 
-    // function createTable(){
-    //     var age;
-    //     infoArr.forEach(element => {
-    //         var gallons = Math.ceil(element.details.travleInfo.milesFromHome/homeBase[0].details.MPG);
-    //         $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'"></tr>');
-    //         $('#rowNumber'+i).append(
-    //             '<td>'+element.details.name+'</td>'
-    //             +'<td><span class="fake-link">'+element.details.address+'</span></td>'
-    //             +'<td>'+element.details.travleInfo.milesFromHome+' miles</td>'
-    //             +'<td><a href="http://google.com/search?q=directions to '+element.details.name+ ' from here" target="googleDirections">'+element.details.travleInfo.timeToDestination+'</a></td>'
-    //             +'<td>'+gallons+' gal.</td>');
-    //         i++
-    //     });
-    // };
+    function createTable(){
+        var age;
+        infoArr.forEach(element => {
+            var gallons = Math.ceil(element.details.travleInfo.milesFromHome/homeBase[0].details.MPG);
+            $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'"></tr>');
+            $('#rowNumber'+i).append(
+                '<td>'+element.details.name+'</td>'
+                +'<td><span class="fake-link">'+element.details.address+'</span></td>'
+                +'<td>'+element.details.travleInfo.milesFromHome+' miles</td>'
+                +'<td><a href="http://google.com/search?q=directions to '+element.details.name+ ' from here" target="googleDirections">'+element.details.travleInfo.timeToDestination+'</a></td>'
+                +'<td>'+gallons+' gal.</td>');
+            i++
+        });
+    };
 
     //this is working to create the table. Now need to map the snapShot to the other functions, and get the table click function working again.
 
