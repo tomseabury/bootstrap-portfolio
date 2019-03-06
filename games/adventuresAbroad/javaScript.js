@@ -142,7 +142,6 @@ $(()=> {
     //this is working to create the table. Now need to map the snapShot to the other functions, and get the table click function working again.
 
     function createTable(snapShot){
-            var i = 0;
             var gallons = Math.ceil(snapShot.val().milesFromHome/homeBase[0].details.MPG);
             $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'"></tr>');
             $('#rowNumber'+i).append(
