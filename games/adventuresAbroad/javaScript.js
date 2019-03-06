@@ -143,7 +143,7 @@ $(()=> {
 
     function createTable(snapShot){
             var gallons = Math.ceil(snapShot.val().milesFromHome/homeBase[0].details.MPG);
-            $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'"></tr>');
+            $('#infrogTable tr:last').after('<tr onclick="goToAddress('+i+')" id="rowNumber'+i+'"></tr>');
             $('#rowNumber'+i).append(
                 '<td>'+snapShot.val().name+'</td>'
                 +'<td><span class="fake-link">'+snapShot.val().address+'</span></td>'
@@ -204,23 +204,39 @@ $(()=> {
     myMap();
     setBackGround();
     
-    $("tr").on('click', function (){
-        if(this.id != ""){
-            var geocoder = new google.maps.Geocoder
-            var rowID = this.id.substr(this.id.length - 1);
-            geocoder.geocode({
-                address: infoArr[rowID].details.address,
-            }, function(results,status){
-                if (status == google.maps.GeocoderStatus.OK) {
-                    map.setCenter(results[0].geometry.location);
-                    map.setZoom(10);
-                    document.body.style.backgroundImage = "url("+infoArr[rowID].details.image+")"
-                  } else {
-                    alert('Geocode was not successful for the following reason: ' + status);
-                  };
-            });
-        };
-    });
+    // $("tr").on('click', function (){
+    //     if(this.id != ""){
+    //         var geocoder = new google.maps.Geocoder
+    //         var rowID = this.id.substr(this.id.length - 1);
+    //         geocoder.geocode({
+    //             address: infoArr[rowID].details.address,
+    //         }, function(results,status){
+    //             if (status == google.maps.GeocoderStatus.OK) {
+    //                 map.setCenter(results[0].geometry.location);
+    //                 map.setZoom(10);
+    //                 document.body.style.backgroundImage = "url("+infoArr[rowID].details.image+")"
+    //               } else {
+    //                 alert('Geocode was not successful for the following reason: ' + status);
+    //               };
+    //         });
+    //     };
+    // });
+
+    function goToAddress(rowID){
+        var geocoder = new google.maps.Geocoder;
+        geocoder.geocode({
+            address: infoArr[rowID].details.address,
+        }, function(results,status){
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                map.setZoom(10);
+                document.body.style.backgroundImage = "url("+infoArr[rowID].details.image+")"
+                } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+                };
+        });
+    };
+
 
     $("h1").on('click', function(){
         map.setCenter({
