@@ -25,14 +25,15 @@ $(()=> {
         $("tr").on('click', function (){
             if(this.id != ""){
                 var geocoder = new google.maps.Geocoder
-                var rowID = this.id.substr(this.id.length - 1);
+                var address = this.id;
+                var image = this.img;
                 geocoder.geocode({
-                    address: infoArr[rowID].details.address,
+                    address: address,
                 }, function(results,status){
                     if (status == google.maps.GeocoderStatus.OK) {
                         map.setCenter(results[0].geometry.location);
                         map.setZoom(10);
-                        document.body.style.backgroundImage = "url("+infoArr[rowID].details.image+")"
+                        document.body.style.backgroundImage = "url("+image+")"
                       } else {
                         alert('Geocode was not successful for the following reason: ' + status);
                       };
@@ -140,26 +141,26 @@ $(()=> {
     ];
 
 
-    function createTableNoDataBase(){
-        var age;
-        infoArr.forEach(element => {
-            var gallons = Math.ceil(element.details.travleInfo.milesFromHome/homeBase[0].details.MPG);
-            $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'"></tr>');
-            $('#rowNumber'+i).append(
-                '<td>'+element.details.name+'</td>'
-                +'<td><span class="fake-link">'+element.details.address+'</span></td>'
-                +'<td>'+element.details.travleInfo.milesFromHome+' miles</td>'
-                +'<td><a href="http://google.com/search?q=directions to '+element.details.name+ ' from here" target="googleDirections">'+element.details.travleInfo.timeToDestination+'</a></td>'
-                +'<td>'+gallons+' gal.</td>');
-            i++
-        });
-    };
+    // function createTableNoDataBase(){
+    //     var age;
+    //     infoArr.forEach(element => {
+    //         var gallons = Math.ceil(element.details.travleInfo.milesFromHome/homeBase[0].details.MPG);
+    //         $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'"></tr>');
+    //         $('#rowNumber'+i).append(
+    //             '<td>'+element.details.name+'</td>'
+    //             +'<td><span class="fake-link">'+element.details.address+'</span></td>'
+    //             +'<td>'+element.details.travleInfo.milesFromHome+' miles</td>'
+    //             +'<td><a href="http://google.com/search?q=directions to '+element.details.name+ ' from here" target="googleDirections">'+element.details.travleInfo.timeToDestination+'</a></td>'
+    //             +'<td>'+gallons+' gal.</td>');
+    //         i++
+    //     });
+    // };
 
     //this is working to create the table. Now need to map the snapShot to the other functions, and get the table click function working again.
 
     function createTable(snapShot){
             var gallons = Math.ceil(snapShot.val().milesFromHome/homeBase[0].details.MPG);
-            $('#infrogTable tr:last').after('<tr onclick="goToAddress('+i+')" id="rowNumber'+i+'"></tr>');
+            $('#infrogTable tr:last').after('<tr id="'+snapShot.val().address+'" img="'+snapShot.val().image+'"></tr>');
             $('#rowNumber'+i).append(
                 '<td>'+snapShot.val().name+'</td>'
                 +'<td><span class="fake-link">'+snapShot.val().address+'</span></td>'
@@ -238,22 +239,6 @@ $(()=> {
             });
         };
     });
-
-    function goToAddress(rowID){
-        var geocoder = new google.maps.Geocoder;
-        geocoder.geocode({
-            address: infoArr[rowID].details.address,
-        }, function(results,status){
-            if (status == google.maps.GeocoderStatus.OK) {
-                map.setCenter(results[0].geometry.location);
-                map.setZoom(10);
-                document.body.style.backgroundImage = "url("+infoArr[rowID].details.image+")"
-                } else {
-                alert('Geocode was not successful for the following reason: ' + status);
-                };
-        });
-    };
-
 
     $("h1").on('click', function(){
         map.setCenter({
