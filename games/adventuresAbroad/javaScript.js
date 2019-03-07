@@ -159,7 +159,7 @@ $(()=> {
 
     function createTable(snapShot){
             var gallons = Math.ceil(snapShot.val().milesFromHome/homeBase[0].details.MPG);
-            $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'"></tr>');
+            $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'" class="'+snapShot.val().image+'" title="'+snapShot.val().address+'"></tr>');
             $('#rowNumber'+i).append(
                 '<td>'+snapShot.val().name+'</td>'
                 +'<td><span class="fake-link">'+snapShot.val().address+'</span></td>'
