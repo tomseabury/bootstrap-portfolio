@@ -219,7 +219,7 @@ $(()=> {
 
     myMap();
     setBackGround();
-    // createTableNoDataBase();
+    createTableNoDataBase();
     
     $("tr").on('click', function (){
         if(this.id != ""){
