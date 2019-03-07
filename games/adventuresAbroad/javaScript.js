@@ -25,15 +25,14 @@ $(()=> {
         $("tr").on('click', function (){
             if(this.id != ""){
                 var geocoder = new google.maps.Geocoder
-                var address = this.name;
-                var image = this.value;
+                var rowID = this.id.substr(this.id.length - 1);
                 geocoder.geocode({
-                    address: address,
+                    address: infoArr[rowID].details.address,
                 }, function(results,status){
                     if (status == google.maps.GeocoderStatus.OK) {
                         map.setCenter(results[0].geometry.location);
                         map.setZoom(10);
-                        document.body.style.backgroundImage = "url("+image+")"
+                        document.body.style.backgroundImage = "url("+infoArr[rowID].details.image+")"
                       } else {
                         alert('Geocode was not successful for the following reason: ' + status);
                       };
@@ -141,26 +140,26 @@ $(()=> {
     ];
 
 
-    // function createTableNoDataBase(){
-    //     var age;
-    //     infoArr.forEach(element => {
-    //         var gallons = Math.ceil(element.details.travleInfo.milesFromHome/homeBase[0].details.MPG);
-    //         $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'"></tr>');
-    //         $('#rowNumber'+i).append(
-    //             '<td>'+element.details.name+'</td>'
-    //             +'<td><span class="fake-link">'+element.details.address+'</span></td>'
-    //             +'<td>'+element.details.travleInfo.milesFromHome+' miles</td>'
-    //             +'<td><a href="http://google.com/search?q=directions to '+element.details.name+ ' from here" target="googleDirections">'+element.details.travleInfo.timeToDestination+'</a></td>'
-    //             +'<td>'+gallons+' gal.</td>');
-    //         i++
-    //     });
-    // };
+    function createTableNoDataBase(){
+        var age;
+        infoArr.forEach(element => {
+            var gallons = Math.ceil(element.details.travleInfo.milesFromHome/homeBase[0].details.MPG);
+            $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'"></tr>');
+            $('#rowNumber'+i).append(
+                '<td>'+element.details.name+'</td>'
+                +'<td><span class="fake-link">'+element.details.address+'</span></td>'
+                +'<td>'+element.details.travleInfo.milesFromHome+' miles</td>'
+                +'<td><a href="http://google.com/search?q=directions to '+element.details.name+ ' from here" target="googleDirections">'+element.details.travleInfo.timeToDestination+'</a></td>'
+                +'<td>'+gallons+' gal.</td>');
+            i++
+        });
+    };
 
     //this is working to create the table. Now need to map the snapShot to the other functions, and get the table click function working again.
 
     function createTable(snapShot){
             var gallons = Math.ceil(snapShot.val().milesFromHome/homeBase[0].details.MPG);
-            $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'" name="'+snapShot.val().address+'" value="'+snapShot.val().image+'"></tr>');
+            $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'"></tr>');
             $('#rowNumber'+i).append(
                 '<td>'+snapShot.val().name+'</td>'
                 +'<td><span class="fake-link">'+snapShot.val().address+'</span></td>'
