@@ -24,15 +24,16 @@ $(()=> {
         createTable(snapShot);
         $("tr").on('click', function (){
             if(this.id != ""){
+                var backgroundpic = $(this).attr('value');
                 var geocoder = new google.maps.Geocoder
                 var rowID = this.id.substr(this.id.length - 1);
                 geocoder.geocode({
-                    address: infoArr[rowID].details.address,
+                    address: $(this).attr('about'),
                 }, function(results,status){
                     if (status == google.maps.GeocoderStatus.OK) {
                         map.setCenter(results[0].geometry.location);
                         map.setZoom(10);
-                        document.body.style.backgroundImage = "url("+infoArr[rowID].details.image+")"
+                        document.body.style.backgroundImage = "url("+backgroundpic+")"
                       } else {
                         alert('Geocode was not successful for the following reason: ' + status);
                       };
@@ -159,7 +160,7 @@ $(()=> {
 
     function createTable(snapShot){
             var gallons = Math.ceil(snapShot.val().milesFromHome/homeBase[0].details.MPG);
-            $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'" class="'+snapShot.val().image+'" about='+snapShot.val().name+' '+snapShot.val().address+'></tr>');
+            $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'" value="'+snapShot.val().image+'" about="'+snapShot.val().address+'"></tr>');
             $('#rowNumber'+i).append(
                 '<td>'+snapShot.val().name+'</td>'
                 +'<td><span class="fake-link">'+snapShot.val().address+'</span></td>'
@@ -226,7 +227,7 @@ $(()=> {
             var geocoder = new google.maps.Geocoder
             var rowID = this.id.substr(this.id.length - 1);
             geocoder.geocode({
-                address: infoArr[rowID].details.address,
+                address: this.value,
             }, function(results,status){
                 if (status == google.maps.GeocoderStatus.OK) {
                     map.setCenter(results[0].geometry.location);
