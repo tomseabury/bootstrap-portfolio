@@ -56,7 +56,6 @@ $(()=> {
 
 
     function writeLocationData(address, imageUrl, miles, name) {
-        console.log("Hello there")
         firebase.database().ref('locations/' + name).set({
           address: address,
           image: imageUrl,
