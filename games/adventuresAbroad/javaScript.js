@@ -55,15 +55,18 @@ $(()=> {
     ];
 
 
-    function writeLocationData(location, name, email, imageUrl) {
-        firebase.database().ref('users/' + location).set({
-          username: name,
-          email: email,
-          profile_picture : imageUrl
+    function writeLocationData(address, imageUrl, miles, name) {
+        console.log("Hello there")
+        firebase.database().ref('locations/' + name).set({
+          address: address,
+          image: imageUrl,
+          milesFromHome : miles,
+          name: name,
+          timeToDestination: "Google"
         });
       }
 
-      writeLocationData
+      //writeLocationData()
 
     function createTable(snapShot){
             var gallons = Math.ceil(snapShot.val().milesFromHome/homeBase[0].details.MPG);
