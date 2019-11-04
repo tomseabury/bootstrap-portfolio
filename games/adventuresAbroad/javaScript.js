@@ -18,10 +18,8 @@ $(()=> {
     var map;
 
     database.ref("/locations").on("child_added", function(snapShot){
-        
-        console.log("Hello world");
-        console.log(snapShot.val());
         createTable(snapShot);
+        setPins(map,snapShot);
         $("tr").on('click', function (){
             if(this.id != ""){
                 var backgroundpic = $(this).attr('value');
@@ -67,23 +65,6 @@ $(()=> {
 
       writeLocationData
 
-    function createTableNoDataBase(){
-        var age;
-        infoArr.forEach(element => {
-            var gallons = Math.ceil(element.details.travleInfo.milesFromHome/homeBase[0].details.MPG);
-            $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'"></tr>');
-            $('#rowNumber'+i).append(
-                '<td>'+element.details.name+'</td>'
-                +'<td><span class="fake-link">'+element.details.address+'</span></td>'
-                +'<td>'+element.details.travleInfo.milesFromHome+' miles</td>'
-                +'<td><a href="http://google.com/search?q=directions to '+element.details.name+ ' from here" target="googleDirections">'+element.details.travleInfo.timeToDestination+'</a></td>'
-                +'<td>'+gallons+' gal.</td>');
-            i++
-        });
-    };
-
-    //this is working to create the table. Now need to map the snapShot to the other functions, and get the table click function working again.
-
     function createTable(snapShot){
             var gallons = Math.ceil(snapShot.val().milesFromHome/homeBase[0].details.MPG);
             $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'" value="'+snapShot.val().image+'" about="'+snapShot.val().address+'"></tr>');
@@ -104,49 +85,45 @@ $(()=> {
             mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
         };
         map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-        setPins(map);
     };
 
-    function setPins(map) {
+    function setPins(map,snapShot) {
         var newPin = new google.maps.Geocoder
-        infoArr.forEach(element => {
-            newPin.geocode({
-                address: element.details.address,
-            }, function(results,status){
-                if (status == google.maps.GeocoderStatus.OK) {
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location,
-                        animation: google.maps.Animation.DROP,
-                    });
-                    var infoMarker = new google.maps.InfoWindow({
-                        content: element.details.name,
-                    });
-                    google.maps.event.addListener(marker,'click',function() {
-                        map.setZoom(12);
-                        map.setCenter(marker.getPosition());
-                        document.body.style.backgroundImage = "url("+element.details.image+")";
-                    });
-                    google.maps.event.addListener(marker,'mouseover',function(){
-                        infoMarker.open(map, marker);
-                    });
-                    google.maps.event.addListener(marker,'mouseout',function(){
-                        infoMarker.close();
-                    });
-                } else {
-                    alert('Geocode was not successful for the following reason: ' + status);
-                };
-            });
+        newPin.geocode({
+            address: snapShot.val().address,
+        }, function(results,status){
+            if (status == google.maps.GeocoderStatus.OK) {
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location,
+                    animation: google.maps.Animation.DROP,
+                });
+                var infoMarker = new google.maps.InfoWindow({
+                    content: snapShot.val().name,
+                });
+                google.maps.event.addListener(marker,'click',function() {
+                    map.setZoom(12);
+                    map.setCenter(marker.getPosition());
+                    document.body.style.backgroundImage = "url("+snapShot.val().image+")";
+                });
+                google.maps.event.addListener(marker,'mouseover',function(){
+                    infoMarker.open(map, marker);
+                });
+                google.maps.event.addListener(marker,'mouseout',function(){
+                    infoMarker.close();
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            };
         });
     };
 
     function setBackGround(){
-        document.body.style.backgroundImage = "url("+mainBackgroundImages[Math.floor(Math.random()*mainBackgroundImages.length)]+")"
+        document.body.style.backgroundImage = "url("+mainBackgroundImages[Math.floor(Math.random()*mainBackgroundImages.length)]+")";
     };
 
     myMap();
     setBackGround();
-    createTableNoDataBase();
     
     $("h1").on('click', function(){
         map.setCenter({
