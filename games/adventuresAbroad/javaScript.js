@@ -127,6 +127,8 @@ $(()=> {
     myMap();
     setBackGround();
     
+    $('.modal-trigger').leanModal();
+    
     $("h1").on('click', function(){
         map.setCenter({
             lat: 41.7102,
