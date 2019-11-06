@@ -136,6 +136,14 @@ $(()=> {
         document.body.style.backgroundImage = "url("+mainBackgroundImages[Math.floor(Math.random()*mainBackgroundImages.length)]+")"
     });
 
+    $(document).ready(function () {
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+    
+    });
+
     // this is having a CORS issue, will need to set up some sort of server side request if I want to proceed
     // $.ajax({
     //     method: 'GET',
