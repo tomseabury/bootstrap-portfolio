@@ -23,7 +23,7 @@ $.ajax({
     for (var i = 0; i < results.length; i++) {
 
     // Filtering by the appropriate rating
-    if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+    if (results[i].rating !== "g" && results[i].rating !== "pg") {
         
         var gifDiv = $("<div class='item'>");
         var rating = results[i].rating;
