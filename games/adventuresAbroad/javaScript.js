@@ -48,8 +48,8 @@ $(()=> {
     
     var homeBase = [
         {details:{
-            address: "1541 E Eaglemann Ct. West Jordan, UT 84084",
-            MPG: 30,
+            address: "9706 S 1210 E Sandy Ut, 84094",
+            MPG: 15,
             tankSize: 17,
         }}
     ];
