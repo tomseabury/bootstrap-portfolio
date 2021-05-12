@@ -50,7 +50,7 @@ $(()=> {
         {details:{
             address: "9706 S 1210 E Sandy Ut, 84094",
             MPG: 15,
-            tankSize: 17,
+            tankSize: 24,
         }}
     ];
 
@@ -68,7 +68,7 @@ $(()=> {
       //writeLocationData()
 
     function createTable(snapShot){
-            var gallons = Math.ceil(snapShot.val().milesFromHome/homeBase[0].details.MPG);
+            var gallons = Math.ceil((snapShot.val().milesFromHome/homeBase[0].details.MPG)/homeBase[0].details.tankSize);
             $('#infrogTable tr:last').after('<tr id="rowNumber'+i+'" value="'+snapShot.val().image+'" about="'+snapShot.val().address+'"></tr>');
             $('#rowNumber'+i).append(
                 '<td>'+snapShot.val().name+'</td>'
