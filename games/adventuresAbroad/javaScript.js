@@ -75,7 +75,7 @@ $(()=> {
                 +'<td><span class="fake-link">'+snapShot.val().address+'</span></td>'
                 +'<td>'+snapShot.val().milesFromHome+' miles</td>'
                 +'<td><a href="http://google.com/search?q=directions to '+snapShot.val().name+ ' from here" target="googleDirections" class="fake-link">'+snapShot.val().timeToDestination+'</a></td>'
-                +'<td>'+gallons+' gal.</td>');
+                +'<td>'+gallons+'</td>');
             i++
     };
 
